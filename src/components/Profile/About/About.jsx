@@ -1,21 +1,25 @@
-import React from 'react'
-import Profile from "../Profile";
+import React from 'react';
 import Preloader from "../../Common/Preloader/Preloader";
+import ContactItem from "./ContactItem";
 
-const About = ({profile}) => {
+const About = ({profile, isOwner}) => {
+
+
   if(!profile){
     return <Preloader/>
   }
+
   return (
        <React.Fragment>
         <div className="col-lg-4 col-md-5">
           <div className="user-data full-width">
             <div className="about-left-heading">
               <h3>Contacts</h3>
-              <a href="my_dashboard_setting_social.html">Edit</a>
+              {isOwner && <a href="#">Edit</a>}
             </div>
             <div className="categories-items">
-              <a className="category-social-item" href="my_dashboard_about.html#"><span>Vk</span> <i className="fas fa-globe"></i>{profile.contacts.vk}</a>
+
+              {Object.keys(profile.contacts).map(key => <ContactItem key={key} ContactLink={profile.contacts[key]} ContactTitle={key}/>)}
             </div>
           </div>
         </div>
@@ -23,21 +27,25 @@ const About = ({profile}) => {
           <div className="user-data full-width">
             <div className="about-left-heading">
               <h3>About</h3>
-              <a href="my_dashboard_setting_info.html">Edit</a>
+              {isOwner && <a href="#">Edit</a>}
             </div>
             <div className="about-dt-des">
               <p>{profile.aboutMe}</p>
             </div>
           </div>
+          {profile.lookingForAJob &&
           <div className="user-data full-width">
             <div className="about-left-heading">
               <h3>Looking For A Job Description</h3>
-              <a href="my_dashboard_setting_info.html">Edit</a>
+              {isOwner && <a href="#">Edit</a>}
             </div>
             <div className="about-dt-des">
               <p>{profile.lookingForAJobDescription}</p>
             </div>
           </div>
+          }
+
+
           {/*<div className="user-data full-width">*/}
           {/*  <div className="about-left-heading">*/}
           {/*    <h3>Hobbies</h3>*/}

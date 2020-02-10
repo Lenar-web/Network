@@ -3298,12 +3298,12 @@ footer {
 .event-todo-thumbnail-area {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    min-height: 350px;
+    min-height: 150px;
     position: relative;
 }
 
 .event-todo-thumbnail-area .todo-thumb {
-    min-height: 350px;
+    min-height: 150px;
 }
 
 .event-bg-overlay {
@@ -5893,12 +5893,12 @@ footer {
 .dash-todo-thumbnail-area1 {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    min-height: 350px;
+    min-height: 150px;
     position: relative;
 }
 
 .dash-todo-thumbnail-area1 .todo-thumb1 {
-    min-height: 350px;
+    min-height: 150px;
 }
 
 .dash-bg-overlay {

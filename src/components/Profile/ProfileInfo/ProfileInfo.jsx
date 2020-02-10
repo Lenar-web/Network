@@ -1,7 +1,8 @@
 import React from 'react'
 import Preloader from '../../Common/Preloader/Preloader'
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
-const ProfileInfo = ({profile,status}) => {
+const ProfileInfo = ({profile,status, updateStatus, isOwner}) => {
   if(!profile){
     return <Preloader />
   }
@@ -33,7 +34,7 @@ const ProfileInfo = ({profile,status}) => {
           <div className="event-title">
             <div className="my-dash-dt">
               <h3>{profile && profile.fullName}</h3>
-              <span>{status ? status : 'no status'}</span>															
+              {isOwner ? <ProfileStatus status={status} updateStatus={updateStatus}/> : <span>{status ? status : 'no status'}</span>}
             </div>								
           </div>
         </div>
