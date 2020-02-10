@@ -1,0 +1,21 @@
+import { createStore, combineReducers, applyMiddleware, compose} from "../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
+import thunkMiddleware from "redux-thunk";
+import profileReducer from "./profile-reducer";
+import authReducer from "./auth-reducer";
+import { reducer as formReducer } from 'redux-form';
+import usersReducer from "./users-reducer";
+
+// комбайним redusers
+let reducers = combineReducers({
+  profilePage: profileReducer, 
+  auth: authReducer,
+  users: usersReducer,
+  // подключаем redux-form
+  form: formReducer,
+})
+// подключаем расширение хрома
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// создаем store и подключаем redux-thunk
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+
+export default store;
