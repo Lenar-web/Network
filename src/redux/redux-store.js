@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware, compose} from "../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
+import { createStore, combineReducers, applyMiddleware, compose} from "redux";
 import thunkMiddleware from "redux-thunk";
 import profileReducer from "./profile-reducer";
 import authReducer from "./auth-reducer";

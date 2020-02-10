@@ -3,6 +3,7 @@ import Posts from '../Posts/Posts'
 import PostsContainer from '../Posts/PostsContainer'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import {Route, NavLink} from 'react-router-dom';
+import About from "./About/About";
 const Profile = (props) => {
   return (
     <main className="dashboard-mp">	
@@ -23,8 +24,7 @@ const Profile = (props) => {
               </li>
             </ul>
           </div>
-          {/* <div className="my-dash-dt">
-              <h3>Имя</h3></div> */}
+          <About profile={props.profile}/>
           <PostsContainer />
 
         </div>
