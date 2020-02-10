@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import LeftMenu from './components/LeftMenu/LeftMenu';
 import MyProfile from './components/MyProfile/MyProfile';
 import Profile from './components/Profile/Profile';
@@ -25,9 +25,11 @@ const App = (props) =>{
 							</div>
 						</div>
 						<div className="col-lg-9 col-md-7">
-						<Route path='/' exact render={ ()=><ProfileContainer />} />
+							<Switch>
             <Route path='/profile/:userId?' render={ ()=> <ProfileContainer /> } />
             <Route path='/users' render={ ()=> <UsersContainer /> } />
+								<Route render={ ()=><ProfileContainer />} />
+							</Switch>
 						</div>
 
 					</div>

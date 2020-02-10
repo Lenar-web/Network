@@ -2,11 +2,15 @@ import React, {useState} from 'react';
 import PostsContainer from '../Posts/PostsContainer';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import About from "./About/About";
-import {NavLink, Route} from "react-router-dom";
+import {NavLink, Route, Switch} from "react-router-dom";
+import Preloader from "../Common/Preloader/Preloader";
 
 const Profile = (props) => {
 let alerts = () =>{
   alert('click')
+}
+if (!props.profile) {
+  return <Preloader/>
 }
   return (
     <main className="dashboard-mp">	
@@ -16,15 +20,18 @@ let alerts = () =>{
         <div className="row"><div className="col-lg-12 col-md-12">
             <ul className="nav nav-tabs">
               <li className="nav-item" onItemSelected={alerts}>
-                <NavLink to={props.match.url + '/activity'} className="nav-link">Activity</NavLink>
+                <NavLink to={'/profile/' + props.profile.userId +'/activity'} className="nav-link">Activity</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to={props.match.url + '/about'} className="nav-link">About</NavLink>
+                <NavLink to={'/profile/' + props.profile.userId +'/about'} className="nav-link">About</NavLink>
               </li>
             </ul>
           </div>
-          <Route path={props.match.url + '/activity'} exact render={() => <PostsContainer />}/>
-          <Route path={props.match.url + '/about'} exact render={() => <About profile={props.profile} isOwner={props.isOwner}/>}/>
+          <Switch>
+          <Route path={props.match.url + '/activity'} render={() => <PostsContainer />}/>
+          <Route path={props.match.url + '/about'} render={() => <About profile={props.profile} isOwner={props.isOwner}/>}/>
+          <Route  render={() => <PostsContainer />}/>
+          </Switch>
 
 
 
