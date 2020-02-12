@@ -4,12 +4,14 @@ import profileReducer from "./profile-reducer";
 import authReducer from "./auth-reducer";
 import { reducer as formReducer } from 'redux-form';
 import usersReducer from "./users-reducer";
+import appReducer from "./app-reducer";
 
 // комбайним redusers
 let reducers = combineReducers({
   profilePage: profileReducer, 
   auth: authReducer,
   users: usersReducer,
+  app: appReducer,
   // подключаем redux-form
   form: formReducer,
 })

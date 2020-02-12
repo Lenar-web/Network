@@ -5,8 +5,13 @@ import {NavLink} from 'react-router-dom';
 const Header = ({login, isAuth}) => {
 
 let [dropDown, setDropDown] = useState(false);
-let closeDropDown = () => {
-	setDropDown(false)
+let toggleDropDown = () => {
+	if(dropDown){
+		setDropDown(false)
+	}else{
+		setDropDown(true)
+	}
+
 };
 let openDropDown = () => {
   setDropDown(true)
@@ -25,12 +30,13 @@ let openDropDown = () => {
 
 
 							<div className="account order-1 dropdown">
-								<div onClick={openDropDown} className="account-link dropdown-toggle-no-caret" role="button" data-toggle="dropdown"> 
+								<div onClick={toggleDropDown} className="account-link dropdown-toggle-no-caret" role="button" data-toggle="dropdown">
 									<div className="user-dp"><img src="images/dp.jpg" alt=""/></div>
 									{/* Если авторизован показать логин иначе кнопку входа*/}
 									{isAuth && <div><span>Hi! {login}</span><i className="fas fa-angle-down"></i></div>}
+									{!isAuth && <div><span><NavLink to={'/login'}>Login</NavLink></span></div>}
 								</div>
-								<div onMouseLeave={closeDropDown} className={`dropdown-menu account-dropdown dropdown-menu-right ${dropDown ? 'show' : ''}`}>
+								<div className={`dropdown-menu account-dropdown dropdown-menu-right ${dropDown ? 'show' : ''}`}>
 								   <NavLink className='link-item' to='/profile'>Profile</NavLink>
 									<a className="link-item" href="#">Messages</a>
 									<a className="link-item" href="#">Users</a>

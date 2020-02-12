@@ -5,14 +5,14 @@ const User = ({user, follow, unfollow, followingInProgress}) => {
   <div className="user-data full-width">
     <div className="user-profile">
       <div className="userbg-dt dpbg-1">
-      <NavLink to={`/profile/${user.id}`}> 
+      <NavLink to={`/profile/${user.id}/activity`}>
         <div className="usr-pic"> 
           <img src={user.photos.large ? user.photos.large : 'https://forum.mikrotik.com/styles/canvas/theme/images/no_avatar.jpg'} alt=""/> 
         </div> 
           </NavLink> 
       </div>
       <div className="user-main-details">
-      <NavLink to={`/profile/${user.id}`}><h4>{user.name}</h4></NavLink> 
+      <NavLink to={`/profile/${user.id}/activity`}><h4>{user.name}</h4></NavLink>
 <p>{user.status ? user.status : 'no status'}</p>
       </div>
       <ul className="follow-msg-dt">
@@ -24,14 +24,14 @@ const User = ({user, follow, unfollow, followingInProgress}) => {
         <li>
           <div className="follow-dt-sm">
             {user.followed && <button className="follow-btn1" disabled={followingInProgress.some(id => id === user.id)} onClick={()=>{unfollow(user.id)}}>Unfollow</button>}
-            {!user.followed && <button className="follow-btn1" onClick={()=>{follow(user.id)}}>Follow</button>}
+            {!user.followed && <button className="follow-btn1" disabled={followingInProgress.some(id => id === user.id)} onClick={()=>{follow(user.id)}}>Follow</button>}
             
             
           </div>
         </li>
       </ul>
       <div className="profile-link">
-        <a href="user_dashboard_activity.html">View Profile</a>
+          <NavLink to={`/profile/${user.id}/activity`}>View Profile</NavLink>
       </div>
     </div>							
   </div>	

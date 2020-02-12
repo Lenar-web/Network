@@ -25,6 +25,7 @@ export const usersAPI = {
   },
   follow(userId){
     return instance.post(`follow/${userId}`).then(response =>{
+    debugger
       return response.data.resultCode
     })
   },

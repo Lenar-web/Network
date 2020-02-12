@@ -17,7 +17,7 @@ const MyProfile = (props) => {
   return <div className="user-data full-width">
   <div className="user-profile">
     <div className="username-dt dpbg-1">
-      <NavLink to={`/profile/${props.AuthUserId}`}>
+      <NavLink to={`/profile/${props.AuthUserId}/activity`}>
       <div className="usr-pic">
         <img src={props.myProfile.photos.large !== null 
                   ? props.myProfile.photos.large 
@@ -29,7 +29,7 @@ const MyProfile = (props) => {
    {props.myProfile ?<h4>{props.myProfile.fullName}</h4> : <NavLink to={`/login`}>Login</NavLink>}
     </div>
     <div className="profile-link">
-    <NavLink to={`/profile/${props.AuthUserId}`}>View Profile
+    <NavLink to={`/profile/${props.AuthUserId}/activity`}>View Profile
       </NavLink>
     </div>
   </div>							

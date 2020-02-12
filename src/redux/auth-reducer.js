@@ -28,7 +28,7 @@ export const getAuthMe = () => async(dispatch) => {
 let data = await authAPI.me()
 if (data.data.resultCode === 0) {
   let {id, email, login} = data.data.data;
-  dispatch(setAuthMe(id,email, login, true))
+  let prom = dispatch(setAuthMe(id,email, login, true))
 }
 }
 
