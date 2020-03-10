@@ -1,6 +1,8 @@
 import { usersAPI } from "../api/api";
 
 const SET_USERS = 'SET-USERS';
+const MORE_USERS = 'MORE-USERS';
+const NEW_CURRENT_PAGE = "NEW-CURRENT-PAGE";
 const SET_TOTAL_USER_COUNT ="SET-USER-TOTAL-COUNT";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const IS_FETHCING = 'IS-FETCHING';
@@ -9,7 +11,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const TOGGLE_FOLLOWING_IN_PROGRESS = 'TOGGLE-FOLLOWING-IN-PROGRESS';
 let initilaState ={
  users: [],
- pageSize: 24,
+ pageSize: 3,
  currentPage: 1,
  isFetching: false,
  followingInProgress: [],
@@ -22,6 +24,11 @@ const usersReducer = (state = initilaState, action) =>{
       return{
         ...state,
         users: action.users
+      }
+    case MORE_USERS:
+      return{
+        ...state,
+        users: [...state.users, ...action.users]
       }
       case IS_FETHCING:
       return{
@@ -83,6 +90,7 @@ const usersReducer = (state = initilaState, action) =>{
 
 
 export const setUsers = (users) => ({type: SET_USERS, users});
+export const setMoreUsers = (users) => ({type: MORE_USERS, users});
 export const setUserCount = (count) => ({type: SET_TOTAL_USER_COUNT, count});
 export const toggleIsFetching = (fetching) => ({type: IS_FETHCING, fetching});
 export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, pageNumber});
@@ -96,6 +104,13 @@ export const getUsersRequest =(currentPage, pageSize) => async(dispatch) => {
   dispatch(setUsers(users.items))
   dispatch(toggleIsFetching(false))
   dispatch(setUserCount(users.totalCount))
+}
+export const getUsersMore =(currentPage, pageSize) => async(dispatch) => {
+  dispatch(toggleIsFetching(true))
+  dispatch(setCurrentPage(currentPage))
+  let users = await usersAPI.getUsers(currentPage, pageSize);
+  dispatch(setMoreUsers(users.items))
+  dispatch(toggleIsFetching(false))
 }
 
 export const pageChange = (currentPage, pageSize) => async(dispatch) => {
