@@ -6,9 +6,7 @@ import {NavLink, Route, Switch} from "react-router-dom";
 import Preloader from "../Common/Preloader/Preloader";
 
 const Profile = (props) => {
-let alerts = () =>{
-  alert('click')
-}
+
 if (!props.profile) {
   return <Preloader/>
 }
@@ -19,7 +17,7 @@ if (!props.profile) {
       <div className="container">
         <div className="row"><div className="col-lg-12 col-md-12">
             <ul className="nav nav-tabs">
-              <li className="nav-item" onItemSelected={alerts}>
+              <li className="nav-item">
                 <NavLink to={'/profile/' + props.profile.userId +'/activity'} className="nav-link">Activity</NavLink>
               </li>
               <li className="nav-item">

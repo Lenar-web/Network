@@ -1,13 +1,12 @@
 import React, {useState,useEffect} from 'react'
 
 const ProfileStatus = ({status, updateStatus}) => {
-    const [editMode, setEditMode] = useState(false);
-    const [myStatus, setStatus] = useState(status);
+
+    let [editMode, setEditMode] = useState(false);
+    let [myStatus, setStatus] = useState(status);
 
     useEffect(() => {
-        return () => {
             setStatus(status)
-        };
     }, [status]);
     
     let activateEditMode = () =>{
@@ -22,8 +21,8 @@ const ProfileStatus = ({status, updateStatus}) => {
     }
     return (
         <div>
-            {!editMode && <span onClick={activateEditMode}>{status ? status : 'no status'}</span>}
-            {editMode && <input autoFocus onChange={onChangeStatus} onBlur={deactivateEditMode} type="text" value={myStatus}/>}
+            {!editMode && <span onClick={activateEditMode}>{myStatus || 'no status'}</span>}
+            {editMode && <input className='status-input' autoFocus onChange={onChangeStatus} onBlur={deactivateEditMode} type="text" value={myStatus}/>}
         </div>
     );
 };

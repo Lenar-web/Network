@@ -11,13 +11,15 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import {connect} from "react-redux";
 import Preloader from "./components/Common/Preloader/Preloader";
 import {initialApp} from "./redux/app-reducer";
-
+import Login from './components/Login/Login'
 class App extends React.Component {
 	componentDidMount() {
 		this.props.initialApp()
 	}
 
+
 	render() {
+
 		if(!this.props.initialized){
 			return <Preloader />
 		}
@@ -29,20 +31,22 @@ class App extends React.Component {
 					<div className="main-section">
 						<div className="container">
 							<div className="row">
-								{!this.props.isAuth &&
-								<Redirect  to="/login"/>
-								}
-								<div className="col-lg-3 col-md-5">
+
+								{this.props.isAuth && <div className="col-lg-3 col-md-5">
 									<div className="main-left-sidebar">
-										{this.props.isAuth && <MyProfile/>}
-										{this.props.isAuth && <LeftMenu/>}
+										 <MyProfile/>
+										<LeftMenu/>
 									</div>
-								</div>
+								</div>}
+								<Route path='/login' render={() => <Login />}/>
 								<div className="col-lg-9 col-md-7">
 									<Switch>
+										{!this.props.isAuth &&
+										<Redirect  to="/login"/>
+										}
 										<Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
 										<Route path='/users' render={() => <UsersContainer/>}/>
-										<Route render={() => <ProfileContainer/>}/>
+										{this.props.isAuth && <Route render={() => <ProfileContainer/>}/>}
 									</Switch>
 								</div>
 

@@ -66,7 +66,7 @@ export const getMyProfile = (userId) => async (dispatch) =>{
 } 
  
 export const getStatus = (userId) => async (dispatch) => { 
-  const status = await profileAPI.getUserStatus(userId); 
+  const status = await profileAPI.getUserStatus(userId);
   dispatch(SetUserStatus(status)); 
 } 
 

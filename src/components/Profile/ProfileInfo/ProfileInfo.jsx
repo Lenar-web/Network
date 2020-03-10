@@ -3,6 +3,7 @@ import Preloader from '../../Common/Preloader/Preloader'
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
 const ProfileInfo = ({profile,status, updateStatus, isOwner}) => {
+
   if(!profile){
     return <Preloader />
   }
@@ -30,7 +31,7 @@ const ProfileInfo = ({profile,status, updateStatus, isOwner}) => {
   <div className="dash-dts">
     <div className="container">
       <div className="row">
-        <div className="col-lg-6 col-md-6 col-sm-12">
+        <div className="col-lg-12 col-md-12 col-sm-12">
           <div className="event-title">
             <div className="my-dash-dt">
               <h3>{profile && profile.fullName}</h3>

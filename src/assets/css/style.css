@@ -4439,7 +4439,15 @@ footer {
 /* === login Page === */
 
 .register-mp {
-	padding: 100px 0 30px;
+	padding: 20px 0 30px;
+}
+.form-checkbox{
+    display: flex;
+    align-items: center;
+}
+.label-checkbox{
+    margin: 0;
+    margin-left: 10px;
 }
 
 .footer-bg {
@@ -7497,5 +7505,11 @@ footer {
 	font-weight: 500;
     line-height: 24px;
     margin-bottom: 5px;
+}
+.status-input{
+    background-color: transparent;
+    color: #fff;
+    border-bottom: 5px solid #fff;
+    width: 100%;
 }
 

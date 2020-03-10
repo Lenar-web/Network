@@ -11,13 +11,16 @@ import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from "./redux/redux-store";
+import ErrorBoundry from "./components/Error/ErrorBoundry";
 
 
 ReactDOM.render(
-  <BrowserRouter>
-  <Provider store={store}>
-    <App/>
-  </Provider>
-</BrowserRouter>, document.getElementById('root'));
+    <ErrorBoundry>
+     <BrowserRouter>
+       <Provider store={store}>
+         <App/>
+       </Provider>
+     </BrowserRouter>
+    </ErrorBoundry>, document.getElementById('root'));
 
 serviceWorker.unregister();

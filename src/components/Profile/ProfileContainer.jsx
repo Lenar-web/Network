@@ -6,11 +6,13 @@ import Profile from "./Profile";
 import {getProfile, getStatus, updateStatus} from '../../redux/profile-reducer';
 
 class ProfileContainer extends React.Component {
+
   // Делаем проверку на id в url и делаем запрос
   refreshProfile() {
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = this.props.AuthUserId;
+     
     }
     this.props.getProfile(userId);
     this.props.getStatus(userId);
@@ -25,7 +27,7 @@ class ProfileContainer extends React.Component {
     }
   }
   render() {
-    return <Profile {...this.props} profile={this.props.profile} isOwner={!this.props.match.params.userId}/>
+    return <Profile {...this.props} profile={this.props.profile} isOwner={this.props.match.params.userId == this.props.AuthUserId || !this.props.match.params.userId}/>
   }
 }
 let mapStateToProps = (state) => {

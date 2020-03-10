@@ -2,10 +2,10 @@ import React, {useState}  from 'react'
 import headerLogo from '../../assets/images/logo.svg'
 import {NavLink} from 'react-router-dom';
 
-const Header = ({login, isAuth}) => {
+const Header = ({login, isAuth, logout}) => {
 
 let [dropDown, setDropDown] = useState(false);
-let toggleDropDown = () => {
+let showDropDown = () => {
 	if(dropDown){
 		setDropDown(false)
 	}else{
@@ -16,6 +16,9 @@ let toggleDropDown = () => {
 let openDropDown = () => {
   setDropDown(true)
 };
+let closeDropDown = () => {
+	setDropDown(false)
+}
 
   return(
 		<header>
@@ -29,23 +32,20 @@ let openDropDown = () => {
 							</button>
 
 
-							<div className="account order-1 dropdown">
-								<div onClick={toggleDropDown} className="account-link dropdown-toggle-no-caret" role="button" data-toggle="dropdown">
+							<div className="account order-1 dropdown" >
+								<div className="account-link dropdown-toggle-no-caret" role="button" data-toggle="dropdown" onMouseOver={openDropDown}>
 									<div className="user-dp"><img src="images/dp.jpg" alt=""/></div>
 									{/* Если авторизован показать логин иначе кнопку входа*/}
 									{isAuth && <div><span>Hi! {login}</span><i className="fas fa-angle-down"></i></div>}
-									{!isAuth && <div><span><NavLink to={'/login'}>Login</NavLink></span></div>}
+								
 								</div>
-								<div className={`dropdown-menu account-dropdown dropdown-menu-right ${dropDown ? 'show' : ''}`}>
+								<div className={`dropdown-menu account-dropdown dropdown-menu-right ${dropDown ? 'show' : ''}`} onMouseLeave={closeDropDown}>
 								   <NavLink className='link-item' to='/profile'>Profile</NavLink>
-									<a className="link-item" href="#">Messages</a>
-									<a className="link-item" href="#">Users</a>
-									<a className="link-item" href="#">Setting</a>
-									<a className="link-item" href="#">Logout</a>									
+									<NavLink className='link-item' to='/users'>Users</NavLink>
+									<NavLink className="link-item" to="/login" onClick={logout}>Logout</NavLink>
 								</div>
-							
-								{!isAuth &&
-          	<NavLink className='login-link' to='/login'>Login</NavLink>}
+
+						
 							</div>							
 						</nav>
 						<div className="overlay"></div>
