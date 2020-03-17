@@ -2,6 +2,7 @@ import React from 'react'
 import { Field, reduxForm} from 'redux-form';
 
 const CreatePostForm = (props) => {
+debugger
   return <form onSubmit={props.handleSubmit}>
       <div className="activity-group">																					
     <div className="maine-activity-img">																					

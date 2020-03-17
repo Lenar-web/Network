@@ -1,7 +1,7 @@
 import React from 'react'
 import {compose} from 'redux';
 import {connect} from 'react-redux'
-import {AddPost} from '../../../redux/profile-reducer'
+import {AddNewPost} from '../../../redux/profile-reducer'
 import CreatePost from './CreatePost';
 
 const CreatePostContainer = (props) => {
@@ -14,5 +14,5 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-  connect(mapStateToProps, {AddPost})
+  connect(mapStateToProps, {AddNewPost})
 )(CreatePostContainer);

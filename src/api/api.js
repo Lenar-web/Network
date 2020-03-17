@@ -22,6 +22,11 @@ export const authAPI = {
   },
   login(data){
     return instance.post('auth/login',data);
+  },
+  getCaptcha() {
+    return instance.get('security/get-captcha-url').then(respone => {
+      return respone
+    })
   }
 }
 

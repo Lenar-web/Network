@@ -24,7 +24,7 @@ const Post = ({author, text, like}) => {
   </div>
   <div className="like-comment-view">
     <div className="left-comments">
-      <a href="my_dashboard_activity.html#" className="like-item" title="Like">
+      <a href="#" className="like-item" title="Like">
         <i className="fas fa-heart"></i>
           <span><ins>Like</ins> {like}</span>
       </a>

@@ -16,7 +16,7 @@ const Users = (props) => {
 									? <Preloader /> : null}
 
                   </div>
-							<button className="msg-btn1" onClick={props.onPageChange}>Load more</button>
+							<button className="msg-btn1 btn-more" onClick={props.onPageChange}>Load more</button>
                 </div>
 
 								{/*<Pagination totalCount={props.totalUserCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChange={props.onPageChange} portionSize={10} />*/}

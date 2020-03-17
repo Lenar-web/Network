@@ -11,7 +11,7 @@ const LoginForm = (props) => {
     if(props.isAuth) {
         return <Redirect to={'/profile'}/>
     }
-    return <LoginFormRedux onSubmit={onSubmit}/>
+    return <LoginFormRedux captchaUrl={props.captchaUrl} onSubmit={onSubmit}/>
 }
 let mapStateToProps = (state) => {
     return{

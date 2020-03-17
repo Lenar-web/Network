@@ -4423,7 +4423,16 @@ footer {
 	padding: 0;
 	margin-bottom: 0;	
 }
-
+.form-group-captcha{
+    text-align: left;
+}
+.form-group-captcha p{
+    margin: 0;
+    margin-bottom: 10px;
+}
+.form-group-captcha img{
+    margin-bottom: 20px;
+}
 .css-dot {
     border: 0 solid #313131;
     box-sizing: border-box;
@@ -4435,7 +4444,16 @@ footer {
 	float: left;
     padding: 0px 5px;
 }
-
+.btn-more{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+.error-form{
+    text-align: left;
+    color: red;
+    font-size: 24px;
+}
 /* === login Page === */
 
 .register-mp {
