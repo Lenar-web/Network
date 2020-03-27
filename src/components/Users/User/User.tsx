@@ -1,7 +1,16 @@
-import React from 'react'
-import {NavLink} from "react-router-dom"; 
-const User = ({user, follow, unfollow, followingInProgress}) => {
-  return                 <div className="col-lg-4 col-md-6">								
+import React, {FC} from 'react'
+import {NavLink} from 'react-router-dom'
+import {UserType} from '../../../types/types'
+
+type PropsType = {
+    user: UserType
+    follow: (id:number) => void
+    unfollow: (id:number) => void
+    followingInProgress: Array<number>
+}
+const User: FC<PropsType> = ({user, follow, unfollow, followingInProgress}) => {
+  return (
+    <div className="col-lg-4 col-md-6">
   <div className="user-data full-width">
     <div className="user-profile">
       <div className="userbg-dt dpbg-1">
@@ -24,7 +33,7 @@ const User = ({user, follow, unfollow, followingInProgress}) => {
         <li>
           <div className="follow-dt-sm">
             {user.followed && <button className="follow-btn1" disabled={followingInProgress.some(id => id === user.id)} onClick={()=>{unfollow(user.id)}}>Unfollow</button>}
-            {!user.followed && <button className="follow-btn1" disabled={followingInProgress.some(id => id === user.id)} onClick={()=>{follow(user.id)}}>Follow</button>}
+            {!user.followed && <button className="follow-btn1" disabled={followingInProgress.some(id  => id === user.id)} onClick={()=>{follow(user.id)}}>Follow</button>}
             
             
           </div>
@@ -35,7 +44,7 @@ const User = ({user, follow, unfollow, followingInProgress}) => {
       </div>
     </div>							
   </div>	
-</div>
+</div>)
 }
 
 export default User
