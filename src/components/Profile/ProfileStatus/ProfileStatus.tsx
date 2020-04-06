@@ -1,6 +1,10 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState, useEffect, FC} from 'react'
 
-const ProfileStatus = ({status, updateStatus}) => {
+type PropsType ={
+    status: string
+    updateStatus: (status: string) => void
+}
+const ProfileStatus: FC<PropsType>= ({status, updateStatus}) => {
 
     let [editMode, setEditMode] = useState(false);
     let [myStatus, setStatus] = useState(status);
@@ -16,7 +20,7 @@ const ProfileStatus = ({status, updateStatus}) => {
         setEditMode(false)
         updateStatus(myStatus)
     }
-    let onChangeStatus = (e) =>{
+    let onChangeStatus = (e:any) =>{
         setStatus(e.currentTarget.value)
     }
     return (

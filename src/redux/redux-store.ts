@@ -7,17 +7,25 @@ import usersReducer from "./users-reducer";
 import appReducer from "./app-reducer";
 
 // комбайним redusers
-let reducers = combineReducers({
-  profilePage: profileReducer, 
+let rootReducer = combineReducers({
+  profilePage: profileReducer,
   auth: authReducer,
   users: usersReducer,
   app: appReducer,
   // подключаем redux-form
   form: formReducer,
 })
+
+type RootReducerType = typeof rootReducer;
+export type AppStateType = ReturnType<RootReducerType>;
+
 // подключаем расширение хрома
+// @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // создаем store и подключаем redux-thunk
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));
+
+// @ts-ignore
+window.__store__ = store;
 
 export default store;

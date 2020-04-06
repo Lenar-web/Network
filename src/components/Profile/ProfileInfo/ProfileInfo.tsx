@@ -1,8 +1,15 @@
-import React from 'react'
+import React, {FC} from 'react'
 import Preloader from '../../Common/Preloader/Preloader'
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
+import {ProfileType} from "../../../types/types";
 
-const ProfileInfo = ({profile,status, updateStatus, isOwner}) => {
+type PropsType ={
+  profile: ProfileType
+  status: string,
+  updateStatus: (status: string) => void
+  isOwner: boolean
+}
+const ProfileInfo: FC<PropsType> = ({profile,status, updateStatus, isOwner}) => {
 
   if(!profile){
     return <Preloader />
