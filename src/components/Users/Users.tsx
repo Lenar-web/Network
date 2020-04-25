@@ -4,12 +4,12 @@ import Preloader from '../Common/Preloader/Preloader';
 import {UserType} from "../../types/types";
 
 type PropsType = {
-	users: Array<UserType>,
-	onPageChange: () => void,
-	isFetching: boolean,
-	followingInProgress: Array<number>,
-	unfollow: (userId: number) => void,
-	follow: (userId: number) => void
+	users: Array<UserType>
+	onPageChange: () => void
+	isFetching: boolean
+	followingInProgress: Array<number>
+	unfollow: (id:number) => void
+	follow: (id:number) => void
 }
 const Users: FC<PropsType> = ({users, onPageChange, isFetching, followingInProgress, unfollow, follow}) => {
 

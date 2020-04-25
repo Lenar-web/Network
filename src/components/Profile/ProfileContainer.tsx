@@ -37,12 +37,12 @@ class ProfileContainer extends React.Component<PropsType> {
 
 
 
-type MapStateToPropsType = {
+type MapStatePropsType = {
   profile: ProfileType | null,
   status: string,
   AuthUserId: null | number,
 }
-type MapDispatchToPropsType = {
+type MapDispatchPropsType = {
   getProfile: (userId: string) => void
   getStatus: (userId: string) => void
   updateStatus: (status: string) => void
@@ -50,9 +50,9 @@ type MapDispatchToPropsType = {
 type OwnPropsType = {
   match: any
 }
-type PropsType = MapStateToPropsType & MapDispatchToPropsType & OwnPropsType;
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
 
-let mapStateToProps = (state: AppStateType):MapStateToPropsType => {
+let mapStateToProps = (state: AppStateType):MapStatePropsType => {
   return {
     profile: state.profilePage.profile,
     status: state.profilePage.status,
@@ -60,6 +60,6 @@ let mapStateToProps = (state: AppStateType):MapStateToPropsType => {
   }
 }
 export default compose(
-    connect(mapStateToProps,{getProfile,getStatus,updateStatus}),
+    connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps,{getProfile,getStatus,updateStatus}),
     withRouter
 )(ProfileContainer);

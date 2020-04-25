@@ -15,7 +15,6 @@ type PropsType= {
   match: any
 }
 const Profile: FC<PropsType> = ({profile, status, updateStatus, isOwner, match}) => {
-  debugger
 
 if (!profile) {
   return <Preloader/>

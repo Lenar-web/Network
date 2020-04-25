@@ -11,7 +11,7 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const TOGGLE_FOLLOWING_IN_PROGRESS = 'TOGGLE-FOLLOWING-IN-PROGRESS';
 
-let initilaState ={
+let initialState ={
   users: [] as Array<UserType>,
   pageSize: 3,
   currentPage: 1,
@@ -20,8 +20,9 @@ let initilaState ={
   followingInProgress: [] as Array<number>, // array of users ids
 
 }
-type InitialStateType = typeof initilaState;
-const usersReducer = (state = initilaState, action:any): InitialStateType =>{
+type InitialStateType = typeof initialState;
+
+const usersReducer = (state = initialState, action:any): InitialStateType =>{
   switch(action.type){
     case SET_USERS:
       return{

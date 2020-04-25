@@ -20,7 +20,7 @@ const ProfileStatus: FC<PropsType>= ({status, updateStatus}) => {
         setEditMode(false)
         updateStatus(myStatus)
     }
-    let onChangeStatus = (e:any) =>{
+    let onChangeStatus = (e: { currentTarget: { value: React.SetStateAction<string>; }; }) =>{
         setStatus(e.currentTarget.value)
     }
     return (
