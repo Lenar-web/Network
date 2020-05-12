@@ -1,17 +1,22 @@
-import React, {useEffect} from 'react'
+import React, {FC, useEffect} from 'react'
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {getMyProfile} from '../../redux/profile-reducer';
 import { NavLink } from 'react-router-dom';
 import Preloader from '../Common/Preloader/Preloader';
+import {ProfileType} from "../../types/types";
+import {AppStateType} from "../../redux/redux-store";
 
-const MyProfile = (props) => {
 
-  useEffect(() => {
-    props.getMyProfile(props.AuthUserId)
-  }, [props.AuthUserId])
+const MyProfile: FC<PropsType> = ({myProfile, AuthUserId, getMyProfile}) => {
 
- if(!props.myProfile){
+   useEffect(() => {
+     getMyProfile(AuthUserId)
+   }, [AuthUserId])
+
+
+
+ if(!myProfile){
    return <Preloader />
  }
   return <div className="user-data full-width">
@@ -19,14 +24,14 @@ const MyProfile = (props) => {
     <div className="username-dt dpbg-1">
       <NavLink to={`/profile`}>
       <div className="usr-pic">
-        <img src={props.myProfile.photos.large !== null 
-                  ? props.myProfile.photos.large 
+        <img src={myProfile.photos.large !== null
+                  ? myProfile.photos.large
                   : 'https://forum.mikrotik.com/styles/canvas/theme/images/no_avatar.jpg'} alt=""/>
       </div>
       </NavLink>
     </div>
     <div className="user-main-details">
-   {props.myProfile ?<h4>{props.myProfile.fullName}</h4> : <NavLink to={`/login`}>Login</NavLink>}
+   {myProfile ?<h4>{myProfile.fullName}</h4> : <NavLink to={`/login`}>Login</NavLink>}
     </div>
     <div className="profile-link">
     <NavLink to={`/profile`}>View Profile
@@ -36,13 +41,21 @@ const MyProfile = (props) => {
 </div>
 }
 
+type MapStatePropsType ={
+  myProfile: ProfileType | null
+  AuthUserId:  number
+}
+type MapDispatchPropsType ={
+  getMyProfile: (userId:number) => void
+}
 
-let mapStateToProps = (state) => {
+type PropsType = MapStatePropsType & MapDispatchPropsType
+let mapStateToProps = (state:any):MapStatePropsType => {
   return {
     myProfile: state.profilePage.myProfile,
     AuthUserId: state.auth.id,
   }
 }
 export default compose(
-    connect(mapStateToProps,{getMyProfile})
+    connect<MapStatePropsType, MapDispatchPropsType, AppStateType>(mapStateToProps,{getMyProfile})
 )(MyProfile);

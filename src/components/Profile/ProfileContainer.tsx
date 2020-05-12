@@ -43,7 +43,7 @@ type MapStatePropsType = {
   AuthUserId: null | number,
 }
 type MapDispatchPropsType = {
-  getProfile: (userId: string) => void
+  getProfile: (userId: number) => void
   getStatus: (userId: string) => void
   updateStatus: (status: string) => void
 }
