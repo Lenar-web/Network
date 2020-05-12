@@ -84,11 +84,11 @@ export const AddNewPost = (newPostText: string) => (dispatch: Dispatch<ActionTyp
   dispatch(AddPost(newPostText));
   dispatch(<AddPostActionType>reset('post'));
 }
-export const getProfile = (userId: string) => async (dispatch: Dispatch<ActionType>) =>{
+export const getProfile = (userId: number) => async (dispatch: Dispatch<ActionType>) =>{
   const profile = await profileAPI.getUserProfile(userId); 
   dispatch(SetUserProfile(profile.data)); 
 } 
-export const getMyProfile = (userId: string) => async (dispatch: Dispatch<ActionType>) =>{
+export const getMyProfile = (userId: number | null) => async (dispatch: Dispatch<ActionType>) =>{
   const profile = await profileAPI.getUserProfile(userId); 
   dispatch(SetMyProfile(profile.data)); 
 } 
